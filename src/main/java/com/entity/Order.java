@@ -1,0 +1,54 @@
+package com.entity;
+
+import org.antlr.v4.runtime.misc.LogManager;
+
+import java.awt.*;
+
+public class Order {
+
+    public LogManager Customer;
+    private int id;
+    private String orderdescription;
+    private Customer customer;
+    private List cartItems;
+
+    public Order() {
+
+    }
+
+    public Order(int id, String orderdescription, Customer customer, List cartItems) {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = id;
+    }
+
+    public String getorderdescription() {
+        return orderdescription;
+    }
+
+    public void setorderdescription() {
+        this.orderdescription = orderdescription;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer() {
+        this.customer = customer;
+    }
+
+    public List getCartItems() {
+        return cartItems;
+    }
+
+    public void SetcartItems() {
+        this.cartItems = cartItems;
+    }
+}

@@ -1,9 +1,7 @@
 package com.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.persistence.metamodel.SingularAttribute;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -13,6 +11,9 @@ import java.io.Serializable;
 @Table(name = "Customer")
 
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     @Column
     public int custid;
@@ -31,6 +32,8 @@ public class Customer {
 
     @Column
     private String password;
+
+    private String address;
     @Column
     private int addCustomer;
     @Column
@@ -50,6 +53,14 @@ public class Customer {
     public void setId(){
         this.custid = custid;
     }
+
+    public String getAddress(){
+        return address;
+    }
+    public void setAddress(){
+        this.address = address;
+    }
+
 
     public int getAge() {
         return age;

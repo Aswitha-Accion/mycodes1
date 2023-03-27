@@ -1,7 +1,12 @@
 package com.controller;
 
 import com.entity.Customer;
+import com.entity.Order;
+import com.entity.Product;
 import com.service.CustomerService;
+import com.service.OrderService;
+import com.service.ProductRepository;
+import com.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +26,30 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    private OrderService orderService;
+    private ProductService ProductService;
+
+
     private int id;
+
+    @PostMapping(value = "/getAllproducts" , consumes ={MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<Product>> getAllProducts(){
+        List<Product> productList = ProductService.getAllProducts();
+    return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/getorder",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity getorderdetails(){
+        Order order = orderService.getOrderDetails(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/getOrder/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity getorderdetails1() {
+        Order order = orderService.getOrderDetails(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
     @PostMapping(value = "/create", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addCustomer(@RequestBody Customer customer, HttpServletRequest request) {

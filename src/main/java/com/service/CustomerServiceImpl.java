@@ -3,7 +3,9 @@ package com.service;
 import com.entity.Customer;
 import com.repo.CustomerRepository;
 
+
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService{
 
@@ -13,10 +15,7 @@ public class CustomerServiceImpl implements CustomerService{
 
         this.repository = repository;
     }
-    public CustomerServiceImpl(){
 
-
-    }
     @Override
     public int addCustomer() {
 
@@ -24,27 +23,60 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public String deleteCustomer(Customer customer)  {
+    public String deleteCustomer(int id) {
+
+        repository.deleteById(id);
         return "customer record deleted successfully";
     }
 
     @Override
-    public String deleteCustomer(String id) {
-        repository.toString();
-        return "customer record deleted with id successfully";
+    public String updateCustomer(int id) {
+        Optional<Customer> customer = repository.findById();
+
+        return null;
     }
+
+    public Customer getCustomerById(int id){
+        Customer customer = repository.findById(id).get();
+        return customer;
+    }
+
+    @Override
+    public String updateCustomer() throws CustomerNotFoundException {
+        return null;
+    }
+
+    @Override
+    public String updateCustomer(String id) {
+        return null;
+    }
+
+    //@Override
+    //public String deleteCustomer(String id) {
+     //   repository.toString();
+     //   return "customer record deleted with id successfully";
+    //}
 
 
     @Override
-    public String updateCustomer()throws CustomerNotFoundException {
-        <Optional>  
-
+    public String updateCustomer(Customer customer) {
         return "Customer record updated successfully";
     }
 
     @Override
-    public String getAllCustomers() {
-        return "fetching all customers successfully";
+    public String deleteCustomer(Customer customer) {
+        return null;
+    }
+
+    @Override
+    public String deleteCustomer(String id) {
+        return null;
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return repository.findAll();
+        //return "fetching all customers details successfully";
 
     }
 

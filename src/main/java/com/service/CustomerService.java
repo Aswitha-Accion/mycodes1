@@ -7,17 +7,43 @@ import java.util.List;
 
 public interface CustomerService {
 
+
     public int addCustomer();
 
-    //String deleteCustomer(String id);
+    public List<Customer> getAllCustomers();
 
-    public String deleteCustomer(Customer customer);
+    public Customer getCustomerById(int id);
+
+    public String updateCustomer()throws CustomerNotFoundException;
+
+    public String updateCustomer(String  id);
+
+    public String deleteCustomer(int id);
+
+    public String updateCustomer(int id);
+
+    public String updateCustomer(Customer customer) throws CustomerNotFoundException;
+
+    public String deleteCustomer(Customer customer) ;
 
     String deleteCustomer(String id);
 
-    public String updateCustomer();
 
-    public String getAllCustomers();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int getAllCustomersId();
 
@@ -28,6 +54,8 @@ public interface CustomerService {
     public int updateCustomerById();
 
     public int findAllCustomers();
+
+
 
     public List<Customer> findByNameStartsWith(String name);
 
