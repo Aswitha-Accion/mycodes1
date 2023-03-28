@@ -1,74 +1,26 @@
 package com.service;
 
 import com.entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 //import com.entity.CustomerNotFoundException;
 
 import java.util.List;
 
 public interface CustomerService {
 
+    List<Customer> getAllCustomers();
 
-    public int addCustomer();
+    public String updateCustomer();
 
-    public List<Customer> getAllCustomers();
+    public String getCustomerById();
 
-    public Customer getCustomerById(int id);
+    public String deleteCustomerById();
 
-    public String updateCustomer()throws CustomerNotFoundException;
-
-    public String updateCustomer(String  id);
-
-    public String deleteCustomer(int id);
-
-    public String updateCustomer(int id);
-
-    public String updateCustomer(Customer customer) throws CustomerNotFoundException;
-
-    public String deleteCustomer(Customer customer) ;
-
-    String deleteCustomer(String id);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public int getAllCustomersId();
-
-    public int getCustomerById();
-
-    public int deleteCustomerById();
-
-    public int updateCustomerById();
-
-    public int findAllCustomers();
-
-
-
-    public List<Customer> findByNameStartsWith(String name);
-
-    public List<Customer> findByNameEndsWith(String name);
-
-    public String findByNameOrderByName(String name);
-
-    public String findByNameOrderByAsc(String name);
-
-    public String findByNameOrderByDesc(String name);
-
-
-
-
-
+    public String addCustomer();
 }
+
+
+
+
+
+

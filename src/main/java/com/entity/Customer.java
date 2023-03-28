@@ -12,8 +12,9 @@ import java.io.Serializable;
 
 public class Customer {
 
+    //int id, String name, String email
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column
     public int custid;
@@ -27,11 +28,11 @@ public class Customer {
     @Column
     private String email;
 
-    @Column
-    private String username;
+    //@Column
+    //private String username;
 
-    @Column
-    private String password;
+    //@Column
+    //private String password;
 
     private String address;
     @Column
@@ -86,21 +87,21 @@ public class Customer {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    //public String getUsername() {
+    //    return username;
+    //}
 
-    public void setUsername() {
-        this.username = username;
-    }
+    //public void setUsername() {
+    //    this.username = username;
+    //}
 
-    public String getPassword() {
-        return password;
-    }
+    //public String getPassword() {
+    //    return password;
+    //}
 
-    public void setPassword() {
-        this.password = password;
-    }
+    //public void setPassword() {
+    //   this.password = password;
+    //}
 
     public String addCustomer(Customer customer) {
         this.addCustomer = addCustomer;

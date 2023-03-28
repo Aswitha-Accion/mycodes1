@@ -1,12 +1,16 @@
 package com.entity;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.antlr.v4.runtime.misc.LogManager;
 
 import java.awt.*;
 
 public class Order {
 
-    public LogManager Customer;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String orderdescription;
     private Customer customer;

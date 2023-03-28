@@ -93,7 +93,7 @@ public class CustomerController {
 
     @PostMapping(value = "/addcustomer", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addcustomer(@RequestBody Customer customer) {
-        int msg = customerService.addCustomer();
+        String msg = customerService.addCustomer();
         if (customer != null) {
             return new ResponseEntity<String>(String.valueOf(customer), HttpStatus.OK);
         } else {
@@ -135,3 +135,4 @@ public class CustomerController {
         return new ResponseEntity<String>(Customer,HttpStatus.OK);
     }
 }
+        //getAllCustomers, getCustomerById, updateCustomer, addcustomer, deletecustomer, deletecustometById

@@ -12,24 +12,21 @@ public class OrderService {
     private ProductRepository productRepository;
     private OrderRepository orderRepository;
     private OrderService orderService;
-    
-    public OrderService(ProductRepository OrderService){
+
+    public OrderService(ProductRepository OrderService) {
 
         this.productRepository = productRepository;
         this.orderService = orderService;
     }
 
-    public Order getOrderDetails(int id){
+    public Order getOrderDetails(int id) {
         Optional<Order> order = productRepository.findById(id);
-        return order.isPresent() ? order.get(): null;
+        return order.isPresent() ? order.get() : null;
     }
 
     public Order saveOrder(Order order) {
-       return orderRepository.save(order);
+
+        return orderRepository.save(order);
     }
-
-
-
-
 }
 

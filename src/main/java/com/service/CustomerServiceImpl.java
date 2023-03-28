@@ -2,131 +2,74 @@ package com.service;
 
 import com.entity.Customer;
 import com.repo.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 
+import java.lang.constant.Constable;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl{ //implements CustomerService {
 
+
+    @Autowired
     private CustomerService customerService;
+    private CustomerRepository customerRepository;
     private Object repository;
-    public CustomerServiceImpl(CustomerRepository Repository){
 
+    public CustomerServiceImpl(CustomerRepository Repository) {
         this.repository = repository;
     }
-
-    @Override
-    public int addCustomer() {
-
-        return 0;
+    public List<Customer> getAllCustomers(){
+        return customerRepository.findAll();
     }
 
-    @Override
-    public String deleteCustomer(int id) {
-
-        repository.deleteById(id);
-        return "customer record deleted successfully";
+    public String addCustomer(Customer customer){
+       String customer1 =  customerRepository.addCustomer(customer);
+        return "customer added successfully with id";
     }
 
-    @Override
-    public String updateCustomer(int id) {
-        Optional<Customer> customer = repository.findById();
-
-        return null;
+    public String updateCustomer(Customer customer) throws CustomerNotFoundException {
+        Optional<Customer> customer1 = customerRepository.findById(customer.getId());
+        if(customer1.isPresent())
+        {
+            return customer.getId()+"details updated successfully";
+        }
+        else {
+            throw new CustomerNotFoundException();
+        }
+    }
+    public String deleteCustomer(){
+        customerRepository.deleteCustomerById();
+        return "record deletd successfully";
     }
 
-    public Customer getCustomerById(int id){
-        Customer customer = repository.findById(id).get();
-        return customer;
+    public String deleteCustomerById(Customer customer)throws CustomerNotFoundException{
+        Optional<Customer> customer1 = customerRepository.findById(customer.getId());
+        if(customer1.isPresent()){
+            return customer.getId()+"details deleted successfully";
+        }
+        else{
+            throw new CustomerNotFoundException();
+        }
     }
 
-    @Override
-    public String updateCustomer() throws CustomerNotFoundException {
-        return null;
-    }
-
-    @Override
-    public String updateCustomer(String id) {
-        return null;
-    }
-
-    //@Override
-    //public String deleteCustomer(String id) {
-     //   repository.toString();
-     //   return "customer record deleted with id successfully";
-    //}
 
 
-    @Override
-    public String updateCustomer(Customer customer) {
-        return "Customer record updated successfully";
-    }
 
-    @Override
-    public String deleteCustomer(Customer customer) {
-        return null;
-    }
 
-    @Override
-    public String deleteCustomer(String id) {
-        return null;
-    }
 
-    @Override
-    public List<Customer> getAllCustomers() {
-        return repository.findAll();
-        //return "fetching all customers details successfully";
 
-    }
 
-    @Override
-    public int getAllCustomersId() {
-        return 0;
-    }
 
-    @Override
-    public int getCustomerById() {
-        return 0;
-    }
 
-    @Override
-    public int deleteCustomerById() {
-        return 0;
-    }
 
-    @Override
-    public int updateCustomerById() {
-        return 0;
-    }
 
-    @Override
-    public int findAllCustomers() {
-        return 0;
-    }
 
-    @Override
-    public List<Customer> findByNameStartsWith(String name) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> findByNameEndsWith(String name) {
-        return null;
-    }
-
-    @Override
-    public String findByNameOrderByName(String name) {
-        return "fectching names in order successfully";
-    }
-
-    @Override
-    public String findByNameOrderByAsc(String name) {
-        return "name in ascending order successfully";
-    }
-
-    @Override
-    public String findByNameOrderByDesc(String name) {
-        return "name in descending order successfully";
-    }
 }
+
