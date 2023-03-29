@@ -3,12 +3,15 @@ package com.entity;
 
 import jakarta.persistence.*;
 import jakarta.persistence.metamodel.SingularAttribute;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name = "Customer")
+
 
 public class Customer {
 
