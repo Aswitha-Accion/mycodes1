@@ -5,12 +5,10 @@ import com.entity.Order;
 import com.entity.Product;
 import com.service.CustomerService;
 import com.service.OrderService;
-import com.service.ProductRepository;
 import com.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +24,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
     private OrderService orderService;
+    @Autowired
     private ProductService ProductService;
 
 
@@ -57,7 +57,7 @@ public class CustomerController {
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/id", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/id", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> getCustomerById(@PathVariable("id") Customer customer, HttpServletRequest request) {
         System.out.println(request);
         String customer1 = String.valueOf(customerService.getCustomerById());
@@ -69,7 +69,7 @@ public class CustomerController {
 
     }
 
-    @PostMapping(value = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) {
         try {
             String msg = customer.updateCustomer(customer);
@@ -101,7 +101,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping(value = "/delet{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @DeleteMapping(value = "/delet{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> getCustomerById(@PathVariable Integer id) {
         try {
             String msg = String.valueOf(customerService.deleteCustomerById());
@@ -112,7 +112,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping(value = "/update{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/update{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> updateCustomerById(@PathVariable Integer custId) {
         try {
             String msg = customerService.updateCustomer();

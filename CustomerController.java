@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.entity.Customer;
-import com.service.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
