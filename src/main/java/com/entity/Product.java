@@ -8,16 +8,17 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String productname;
     private int productquantity;
-    private float productprice;
+    private int productprice;
 
     public Product(){
 
     }
 
-    public Product(int id,String productname,int productquantity,float price){
+    public Product(int id,String productname,int productquantity,int price){
 
     }
 
