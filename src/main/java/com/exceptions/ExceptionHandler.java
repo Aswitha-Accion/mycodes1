@@ -1,4 +1,4 @@
-package com.config;
+package com.exceptions;
 
 public class ExceptionHandler {
 }

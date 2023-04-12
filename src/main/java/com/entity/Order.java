@@ -1,5 +1,6 @@
 package com.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -7,6 +8,7 @@ import org.antlr.v4.runtime.misc.LogManager;
 
 import java.awt.*;
 
+@Entity
 public class Order {
 
     @Id

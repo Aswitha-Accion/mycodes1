@@ -17,6 +17,7 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private CustomerService customerService;
+    private Customer customer;
     //private Object repository;
 
 
@@ -24,12 +25,13 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public String addCustomer(Customer customer){
+    public String addCustomer(){
        String customer1 =  customerRepository.addCustomer(customer);
         return "customer added successfully with id";
     }
 
-    public String updateCustomer(Customer customer) throws CustomerNotFoundException {
+    public String updateCustomer() throws CustomerNotFoundException {
+       
         Optional<Customer> customer1 = customerRepository.findById(customer.getId());
         if(customer1.isPresent())
         {
@@ -44,7 +46,7 @@ public class CustomerService {
         return "record deletd successfully";
     }
 
-    public String deleteCustomerById(Customer customer)throws CustomerNotFoundException{
+    public String deleteCustomerById()throws CustomerNotFoundException{
         Optional<Customer> customer1 = customerRepository.findById(customer.getId());
         if(customer1.isPresent()){
             return customer.getId()+"details deleted successfully";
@@ -55,20 +57,22 @@ public class CustomerService {
     }
 
 
-    public String getCustomerById() {
-        return null;
+    public String getCustomerById()throws CustomerNotFoundException {
+        Optional<Customer> customer1 = customerRepository.findById(customer.getId());
+        if(customer1.isPresent()){
+            return customer.getId()+"get details successfully";
+        }
+        else{
+            try {
+                throw new CustomerNotFoundException();
+            } catch (CustomerNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
     }
 
-    public String updateCustomer() {
-        return null;
-    }
 
-    public String deleteCustomerById() {
-        return null;
-    }
-
-    public String addCustomer() {
-        return null;
-    }
 }
 

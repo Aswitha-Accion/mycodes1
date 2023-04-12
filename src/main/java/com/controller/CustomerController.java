@@ -3,6 +3,7 @@ package com.controller;
 import com.entity.Customer;
 import com.entity.Order;
 import com.entity.Product;
+import com.service.CustomerNotFoundException;
 import com.service.CustomerService;
 import com.service.OrderService;
 import com.service.ProductService;
@@ -58,7 +59,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/id", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getCustomerById(@PathVariable("id") Customer customer, HttpServletRequest request) {
+    public ResponseEntity<String> getCustomerById(@PathVariable("id") Customer customer, HttpServletRequest request) throws CustomerNotFoundException {
         System.out.println(request);
         String customer1 = String.valueOf(customerService.getCustomerById());
         if (customer != null) {
@@ -130,7 +131,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/getCustomer{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getCustomerById(@PathVariable Customer customer) {
+    public ResponseEntity<String> getCustomerById(@PathVariable Customer customer) throws CustomerNotFoundException {
         String Customer = String.valueOf(customerService.getCustomerById());
         return new ResponseEntity<String>(Customer,HttpStatus.OK);
     }
