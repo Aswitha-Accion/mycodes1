@@ -35,18 +35,24 @@ public class CustomerController {
 
     @PostMapping(value = "/getAllproducts" , consumes ={MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product> productList = ProductService.getAllProducts();
-    return new ResponseEntity(HttpStatus.OK);
+        List<Product> productList = ProductService.getAllProducts(id);
+    return new ResponseEntity(productList,HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/getproduct/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity getProductDetails(@RequestBody HttpServletRequest request){
+        List<Product> product = ProductService.getAllProducts(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/getorder",consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity getorderdetails(){
+    public ResponseEntity getorderdetails(@RequestBody HttpServletRequest request){
         Order order = orderService.getOrderDetails(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/getOrder/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity getorderdetails1() {
+    public ResponseEntity getorderdetails1(@RequestBody HttpServletRequest request) {
         Order order = orderService.getOrderDetails(id);
         return new ResponseEntity(HttpStatus.OK);
     }
