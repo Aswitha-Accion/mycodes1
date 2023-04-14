@@ -24,7 +24,7 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity handleRuntimeException(MethodArugumentNotValidException e){
         ErrorModel errormodel = new ErrorModel();
-        errormodel.setStatus(e.getStatusCode().value());
+        errormodel.setStatus(e.getStatusCode().value().ordinal());
         errormodel.setMessage(e.getLocalizedMessage());
 
         return new ResponseEntity(errormodel, HttpStatus.INTERNAL_SERVER_ERROR);
