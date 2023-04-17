@@ -15,10 +15,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
-public class SecurityConfig extends WebSecurityConfiguration {
+//@Configuration
+//@EnableWebSecurity
+//@EnableMethodSecurity
+public class SecurityConfig {
 
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
@@ -31,14 +31,18 @@ public class SecurityConfig extends WebSecurityConfiguration {
                 .requestMatchers("/users/**").hasRole("ADMIN")
                 .and()
                 .authorizeHttpRequests()
+                .requestMatchers("/h2-console/**")
+                .permitAll()
+                .and()
+                .authorizeHttpRequests()
                 .requestMatchers("/osc/**")
                 .authenticated().and()
-                .httpBasic()
+                .formLogin()
                 .and()
-                .authenticationProvider(customAuthenticationProvider)
                 .formLogin()
                 .and()
                 .build();
+
     }
     @Bean
         public InMemoryUserDetailsManager userDetailsManager() {

@@ -9,6 +9,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
@@ -18,7 +20,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         try {
             String Username = authentication.getName();
             //UserDetails userDetails = userDetailsService.loadUserByUsername();
-            UserDetails userDetails = userDetailsService.loadUserByUsername(String.valueOf(userDetailsService));
+            UserDetails userDetails = userDetailsService.loadUserByUsername(Username);
             return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         }
         catch(UsernameNotFoundException e){

@@ -34,8 +34,8 @@ public class Customer {
     //@Column
     //private String username;
 
-    //@Column
-    //private String password;
+    @Column
+    private String password;
 
     private String address;
     @Column
@@ -98,13 +98,13 @@ public class Customer {
     //    this.username = username;
     //}
 
-    //public String getPassword() {
-    //    return password;
-    //}
+    public String getPassword() {
+        return password;
+    }
 
-    //public void setPassword() {
-    //   this.password = password;
-    //}
+    public void setPassword() {
+       this.password = password;
+    }
 
     public String addCustomer(Customer customer) {
         this.addCustomer = addCustomer;
