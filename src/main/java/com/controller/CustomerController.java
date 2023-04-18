@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.entity.Customer;
+import com.entity.User;
 import com.entity.Order;
 import com.entity.Product;
 import com.service.CustomerNotFoundException;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.core.userdetails.User;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,29 +48,29 @@ public class CustomerController {
 
     @PostMapping(value = "/getorder",consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity getorderdetails(@RequestBody HttpServletRequest request){
-        Order order = orderService.getOrderDetails(id);
+        Product order = orderService.getOrderDetails(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/getOrder/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity getorderdetails1(@RequestBody HttpServletRequest request) {
-        Order order = orderService.getOrderDetails(id);
+        Product order = orderService.getOrderDetails(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
 
     @PostMapping(value = "/create", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addCustomer(@RequestBody Customer customer, HttpServletRequest request) {
-        String msg = customer.addCustomer(customer);
+    public ResponseEntity<String> addCustomer(@RequestBody User user, HttpServletRequest request) {
+        String msg = user.addUser(user);
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/id", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getCustomerById(@PathVariable("id") Customer customer, HttpServletRequest request) throws CustomerNotFoundException {
+    public ResponseEntity<String> getCustomerById(@PathVariable("id") User user, HttpServletRequest request) throws CustomerNotFoundException {
         System.out.println(request);
         String customer1 = String.valueOf(customerService.getCustomerById());
-        if (customer != null) {
-            return new ResponseEntity<String>(String.valueOf(customer), HttpStatus.OK);
+        if (user != null) {
+            return new ResponseEntity<String>(String.valueOf(user), HttpStatus.OK);
         } else {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
@@ -77,9 +78,9 @@ public class CustomerController {
     }
 
     @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<String> updateCustomer(@RequestBody User user) {
         try {
-            String msg = customer.updateCustomer(customer);
+            String msg = user.updateUser(user);
             return new ResponseEntity<>(msg, HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,9 +89,9 @@ public class CustomerController {
     }
 
     @DeleteMapping(value = "/delete", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> deleteCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<String> deleteCustomer(@RequestBody User user) {
         try {
-            String msg = customer.deleteCustomer(customer);
+            String msg = User.deleteuser(user);
             return new ResponseEntity<>(msg, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,11 +99,11 @@ public class CustomerController {
         }
     }
 
-    @PostMapping(value = "/addcustomer", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addcustomer(@RequestBody Customer customer) {
-        String msg = customerService.addCustomer();
-        if (customer != null) {
-            return new ResponseEntity<String>(String.valueOf(customer), HttpStatus.OK);
+    @PostMapping(value = "/addUser", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> addUser(@RequestBody User user) {
+        String msg = customerService.addUser();
+        if (user != null) {
+            return new ResponseEntity<String>(String.valueOf(user), HttpStatus.OK);
         } else {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
@@ -131,13 +132,13 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/getCustomer", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Customer>> getCustomers(@PathVariable Customer customer) {
-        List<Customer> allCustomers = customerService.getAllCustomers();
-        return new ResponseEntity<List<Customer>>(allCustomers, HttpStatus.OK);
+    public ResponseEntity<List<User>> getCustomers(@PathVariable User customer) {
+        List<User> allCustomers = customerService.getAllCustomers();
+        return new ResponseEntity<List<User>>(allCustomers, HttpStatus.OK);
     }
 
     @GetMapping(value = "/getCustomer{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getCustomerById(@PathVariable Customer customer) throws CustomerNotFoundException {
+    public ResponseEntity<String> getCustomerById(@PathVariable User user) throws CustomerNotFoundException {
         String Customer = String.valueOf(customerService.getCustomerById());
         return new ResponseEntity<String>(Customer,HttpStatus.OK);
     }

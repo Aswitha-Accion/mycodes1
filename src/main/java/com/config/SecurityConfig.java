@@ -21,51 +21,48 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;
+
 
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
-        //return http.csrf(csrf ->csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))               .authorizeRequests()
-                //.requestMatchers("/users/**").hasRole("ADMIN")
-                //.and()
-                //.authorizeHttpRequests()
-                //.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                //.permitAll()
-        return http.authorizeHttpRequests(auth -> auth.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll())
-                .headers(headers -> headers.frameOptions().disable())
-                .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))
-                //.and().headers().frameOptions().disable().and()
-                //.authorizeHttpRequests()
-                //.requestMatchers("/osc/**")
-                //.authenticated().and()
-                .httpBasic()
+        return http.csrf().ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
                 .and()
-                //.formLogin()
-                //.and()
-                .build();
-
+                .authorizeHttpRequests()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+                .permitAll()
+                .and()
+                .headers().frameOptions().disable()
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/users/**").hasRole("ADMIN")
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/osc/**")
+                .authenticated()
+                .and()
+                .httpBasic()
+                .and().build();
     }
-    //@Bean
-     //   public InMemoryUserDetailsManager userDetailsManager() {
-           // UserDetails user = User.withUsername("user")
-                    //.password(passwordEncoder().encode("password1"))
-                    //.roles("USER")
-                   // .build();
+    @Bean
+        public InMemoryUserDetailsManager userDetailsManager() {
+            UserDetails user = User.withUsername("user")
+                    .password(passwordEncoder().encode("password1"))
+                    .roles("USER")
+                    .build();
 
-            //UserDetails admin = User.withUsername("admin")
-                    //.password(passwordEncoder().encode("admin"))
-                    //.roles("USER", "ADMIN")
-                    //.build();
-            //return new InMemoryUserDetailsManager(user, admin);
-        //}
+            UserDetails admin = User.withUsername("admin")
+                    .password(passwordEncoder().encode("admin"))
+                    .roles("USER", "ADMIN")
+                    .build();
+            return new InMemoryUserDetailsManager(user, admin);
+        }
 
-        //@Bean
-        //public PasswordEncoder passwordEncoder() {
+        @Bean
+        public PasswordEncoder passwordEncoder() {
 
-            //return new BCryptPasswordEncoder();
-       // }
+            return new BCryptPasswordEncoder();
+        }
 
 
 }

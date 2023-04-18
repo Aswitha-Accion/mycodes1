@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @SpringBootApplication
+@ComponentScan({"com","com.config","com.controller","com.repo","com.service"})
 
 public class OscApplication {
 
