@@ -12,13 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @SpringBootApplication
-@EnableWebSecurity
+
 public class OscApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OscApplication.class, args);
 	}
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.authorizeHttpRequests()
-	}
+}
