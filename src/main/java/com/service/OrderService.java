@@ -2,29 +2,42 @@ package com.service;
 
 import com.entity.Order;
 import com.entity.Product;
+import com.exceptions.OrderNotFoundException;
+import com.repo.orderRepsoitory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class OrderService {
 
     @Autowired
-    private ProductRepository productRepository;
-    @Autowired private OrderRepository orderRepository;
-    @Autowired private OrderService orderService;
+    private orderRepsoitory orderRepository;
 
-    
-    public Product getOrderDetails(int id) {
-        Optional<Product> order = productRepository.findById(id);
-        return order.isPresent() ? order.get() : null;
+    public List<Order> listOrders(User user) {
+
+        return orderRepository.findAllByUserOrderByCreatedDateDesc(user);
     }
 
-    public Order saveOrder(Order order) {
 
-        return orderRepository.save(order);
+    public Order getOrder(Integer orderId) throws OrderNotFoundException {
+        Optional<Order> order = orderRepository.findById(orderId);
+        if (order.isPresent()) {
+            return order.get();
+        } else
+        {
+            throw new OrderNotFoundException("Order not found");
+        }
     }
+
+
+
 }
+
+
+
+
 

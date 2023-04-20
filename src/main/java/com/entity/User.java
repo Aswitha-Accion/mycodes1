@@ -8,10 +8,11 @@ import jakarta.persistence.*;
 public class User {
 
     //int id, String name, String email, @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column
-    public int userid;
+    public Integer userid;
 
     @Column
     public int age;
@@ -34,6 +35,10 @@ public class User {
     }
 
     public User(int id, int age, String name, String email, String username, String password) {
+    }
+
+    public static String deleteUser(User user) {
+        return null;
     }
 
     public int getId() {
@@ -92,4 +97,13 @@ public class User {
     public void setPassword() {
         this.password = password;
     }
+
+    public String updateUser(User user) {
+        return null;
+    }
+
+    public String addUser(User user) {
+        return null;
+    }
+
 }

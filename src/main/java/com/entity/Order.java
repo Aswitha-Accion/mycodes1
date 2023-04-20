@@ -1,28 +1,26 @@
 package com.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.LogManager;
 
 import java.awt.*;
 
 @Entity
+@Table(name = "Order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String orderdescription;
-    private Customer customer;
+    private User user;
     private List cartItems;
 
     public Order() {
 
     }
 
-    public Order(int id, String orderdescription, Customer customer, List cartItems) {
+    public Order(int id, String orderdescription, User user, List cartItems) {
 
     }
 
@@ -42,12 +40,12 @@ public class Order {
         this.orderdescription = orderdescription;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer() {
-        this.customer = customer;
+    public void setUser() {
+        this.user = user;
     }
 
     public List getCartItems() {
