@@ -21,9 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-
-
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
         return http.csrf().ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))

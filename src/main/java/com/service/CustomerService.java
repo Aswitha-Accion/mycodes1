@@ -14,11 +14,15 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-    @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private CustomerService customerService;
+
+   @Autowired
+   public CustomerService (CustomerRepository customerRepository){
+        this.customerRepository=customerRepository;
+    }
+
+
 
 
 
